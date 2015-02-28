@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#60006699"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/orders_fragment_tv_order_status"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="snapshot"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/orders_fragment_tv_simple_patient_status"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Simple status"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/orders_fragment_tv_control_order"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Operations manual"
+            android:textColor="@android:color/white" />
+        
+        <TextView
+            android:id="@+id/orders_fragment_tv_calibration_order"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Operations manual"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/orders_fragment_cursor"
+            android:layout_width="360dp"
+            android:layout_height="6dp"
+            android:scaleType="matrix"
+            android:src="@drawable/cursor" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/orders_fragment_viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
+</LinearLayout>
