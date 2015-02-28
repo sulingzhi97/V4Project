@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -34,13 +35,12 @@ import android.widget.Toast;
 
 public class OverviewFragment extends Fragment implements OnClickListener {
 	private MainActivity contextActivity;
-	private PopupWindow popupWindow;
 	private ArrayList<Fragment> fragmentList;
 	private ViewPager mPager;
-	private int currIndex;
 	private TextView tvSnapshot;
 	private TextView tvSimpleStates;
 	private TextView tvOperationsManual;
+	private PopupWindow popupWindow;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,24 +124,12 @@ public class OverviewFragment extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.overview_fragment_tv_snapshot:
 			mPager.setCurrentItem(0);
-			tvSnapshot.setBackgroundDrawable(contextActivity.getResources()
-					.getDrawable(R.drawable.ic_tabpager_indicator_sel));
-			tvSimpleStates.setBackgroundDrawable(null);
-			tvOperationsManual.setBackgroundDrawable(null);
 			break;
 		case R.id.overview_fragment_tv_simple_status:
 			mPager.setCurrentItem(1);
-			tvSnapshot.setBackgroundDrawable(null);
-			tvSimpleStates.setBackgroundDrawable(contextActivity.getResources()
-					.getDrawable(R.drawable.ic_tabpager_indicator_sel));
-			tvOperationsManual.setBackgroundDrawable(null);
 			break;
 		case R.id.overview_fragment_tv_operations_manual:
 			mPager.setCurrentItem(2);
-			tvSnapshot.setBackgroundDrawable(null);
-			tvSimpleStates.setBackgroundDrawable(null);
-			tvOperationsManual.setBackgroundDrawable(contextActivity.getResources()
-					.getDrawable(R.drawable.ic_tabpager_indicator_sel));
 			break;
 		case R.id.overview_fragment_img_more:
 			getPopupWindow();
@@ -209,10 +197,35 @@ public class OverviewFragment extends Fragment implements OnClickListener {
 		}
 
 		@Override
-		public void onPageSelected(int arg0) {
-			// TODO Auto-generated method stub
-			currIndex = arg0;
-			int i = currIndex + 1;
+		public void onPageSelected(int index) {
+			setTabBackgroundChange(index);
 		}
+	}
+
+	private void setTabBackgroundChange(int index) {
+
+		switch (index) {
+		case 0:
+			changeTabBackground(
+					contextActivity.getResources().getDrawable(
+							R.drawable.ic_tabpager_indicator_sel), null, null);
+			break;
+		case 1:
+			changeTabBackground(null, contextActivity.getResources()
+					.getDrawable(R.drawable.ic_tabpager_indicator_sel), null);
+			break;
+		case 2:
+			changeTabBackground(null, null, contextActivity.getResources()
+					.getDrawable(R.drawable.ic_tabpager_indicator_sel));
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void changeTabBackground(Drawable pic1, Drawable pic2, Drawable pic3) {
+		tvSnapshot.setBackgroundDrawable(pic1);
+		tvSimpleStates.setBackgroundDrawable(pic2);
+		tvOperationsManual.setBackgroundDrawable(pic3);
 	}
 }
